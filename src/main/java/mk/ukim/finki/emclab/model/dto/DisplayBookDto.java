@@ -5,6 +5,7 @@ import mk.ukim.finki.emclab.model.domain.Book;
 import mk.ukim.finki.emclab.model.enumeration.BookCategory;
 import mk.ukim.finki.emclab.model.enumeration.BookState;
 
+import java.time.LocalDate;
 import java.util.List;
 
 public record DisplayBookDto (
@@ -13,7 +14,8 @@ public record DisplayBookDto (
         BookCategory category,
         Long authorId,
         BookState state,
-        Integer availableCopies
+        Integer availableCopies,
+        LocalDate datePublished
 ) {
     public static DisplayBookDto from(Book book){
         return new DisplayBookDto(
@@ -22,7 +24,8 @@ public record DisplayBookDto (
                 book.getCategory(),
                 book.getAuthor().getId(),
                 book.getState(),
-                book.getAvailableCopies()
+                book.getAvailableCopies(),
+                book.getDatePublished()
         );
     }
 

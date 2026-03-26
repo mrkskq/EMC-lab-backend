@@ -134,4 +134,9 @@ public class BookController {
         return bookRepository.findAll();
     }
 
+    @GetMapping("/top-10-newest")
+    public ResponseEntity<List<Book>> findTop10NewestBooks() {
+        return ResponseEntity.ok(bookService.findTop10NewestBooks());
+    }
+
 }

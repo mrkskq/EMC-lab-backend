@@ -8,6 +8,8 @@ import mk.ukim.finki.emclab.model.domain.Book;
 import mk.ukim.finki.emclab.model.enumeration.BookCategory;
 import mk.ukim.finki.emclab.model.enumeration.BookState;
 
+import java.time.LocalDate;
+
 public record CreateBookDto (
         @NotBlank(message = "Name is required")
         String name,
@@ -23,9 +25,11 @@ public record CreateBookDto (
 
         @NotNull(message = "Available copies is required")
         @Min(value = 0, message = "Available copies can not be negative")
-        Integer availableCopies
+        Integer availableCopies,
+
+        LocalDate datePublished
 ) {
     public Book toBook(Author author){
-        return new Book(name, category, author, state, availableCopies);
+        return new Book(name, category, author, state, availableCopies, datePublished);
     }
 }

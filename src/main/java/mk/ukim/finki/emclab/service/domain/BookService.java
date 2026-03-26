@@ -35,4 +35,6 @@ public interface BookService {
             int size,
             String sortBy
     );
+
+    List<Book> findTop10NewestBooks();
 }

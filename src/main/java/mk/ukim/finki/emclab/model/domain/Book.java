@@ -7,6 +7,9 @@ import lombok.Setter;
 import mk.ukim.finki.emclab.model.enumeration.BookCategory;
 import mk.ukim.finki.emclab.model.enumeration.BookState;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+
 @Entity
 @Getter
 @Setter
@@ -47,11 +50,15 @@ public class Book extends BaseAuditableEntity{
     @Column(nullable = false)
     private Integer availableCopies;
 
-    public Book(String name, BookCategory category, Author author, BookState state, Integer availableCopies) {
+    @Column(name = "date_published")
+    private LocalDate datePublished;
+
+    public Book(String name, BookCategory category, Author author, BookState state, Integer availableCopies, LocalDate datePublished) {
         this.name = name;
         this.category = category;
         this.author = author;
         this.state = state;
         this.availableCopies = availableCopies;
+        this.datePublished = datePublished;
     }
 }

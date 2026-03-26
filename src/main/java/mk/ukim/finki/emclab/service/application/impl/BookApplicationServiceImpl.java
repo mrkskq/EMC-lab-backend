@@ -1,14 +1,17 @@
 package mk.ukim.finki.emclab.service.application.impl;
 
 import mk.ukim.finki.emclab.model.domain.Author;
+import mk.ukim.finki.emclab.model.domain.Book;
 import mk.ukim.finki.emclab.model.dto.CreateBookDto;
 import mk.ukim.finki.emclab.model.dto.DisplayBookDto;
 import mk.ukim.finki.emclab.model.exception.AuthorNotFoundException;
+import mk.ukim.finki.emclab.repository.BookRepository;
 import mk.ukim.finki.emclab.service.application.BookApplicationService;
 import mk.ukim.finki.emclab.service.domain.AuthorService;
 import mk.ukim.finki.emclab.service.domain.BookService;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -17,10 +20,12 @@ public class BookApplicationServiceImpl implements BookApplicationService {
 
     private final BookService bookService;
     private final AuthorService authorService;
+    private final BookRepository bookRepository;
 
-    public BookApplicationServiceImpl(BookService bookService, AuthorService authorService) {
+    public BookApplicationServiceImpl(BookService bookService, AuthorService authorService, BookRepository bookRepository) {
         this.bookService = bookService;
         this.authorService = authorService;
+        this.bookRepository = bookRepository;
     }
 
     @Override
@@ -67,5 +72,10 @@ public class BookApplicationServiceImpl implements BookApplicationService {
         return bookService
                 .rent(id)
                 .map(DisplayBookDto::from);
+    }
+
+    @Override
+    public List<DisplayBookDto> findTop10NewestBooks() {
+        return DisplayBookDto.from(bookService.findTop10NewestBooks());
     }
 }

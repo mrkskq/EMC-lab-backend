@@ -16,6 +16,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -102,5 +103,13 @@ public class BookServiceImpl implements BookService {
                         category, state, authorName != null ? authorName : "", availableCopies, pageable);
 
         return books.map(DisplayBookListDto::from);
+    }
+
+    @Override
+    public List<Book> findTop10NewestBooks() {
+        return bookRepository
+                .findTop10ByDatePublishedBefore(LocalDate.now())
+                .stream()
+                .toList();
     }
 }

@@ -1,5 +1,6 @@
 package mk.ukim.finki.emclab.service.application;
 
+import mk.ukim.finki.emclab.model.domain.Book;
 import mk.ukim.finki.emclab.model.dto.CreateBookDto;
 import mk.ukim.finki.emclab.model.dto.DisplayBookDto;
 
@@ -18,4 +19,7 @@ public interface BookApplicationService {
     Optional<DisplayBookDto> deleteById(Long id);
 
     Optional<DisplayBookDto> rent(Long id);
+
+    List<DisplayBookDto> findTop10NewestBooks();
+
 }
