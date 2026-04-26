@@ -2,6 +2,7 @@ package mk.ukim.finki.emclab.service.application.impl;
 
 import mk.ukim.finki.emclab.model.domain.Author;
 import mk.ukim.finki.emclab.model.dto.CreateBookDto;
+import mk.ukim.finki.emclab.model.dto.DisplayBookDetailsDto;
 import mk.ukim.finki.emclab.model.dto.DisplayBookDto;
 import mk.ukim.finki.emclab.model.exception.AuthorNotFoundException;
 import mk.ukim.finki.emclab.service.application.BookApplicationService;
@@ -67,5 +68,13 @@ public class BookApplicationServiceImpl implements BookApplicationService {
         return bookService
                 .rent(id)
                 .map(DisplayBookDto::from);
+    }
+
+    @Override
+    public Optional<DisplayBookDetailsDto> findWithDetailsById(Long id) {
+        return bookService
+                .findById(id)
+                .map(DisplayBookDetailsDto::from);
+
     }
 }

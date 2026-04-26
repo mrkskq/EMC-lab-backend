@@ -2,6 +2,7 @@ package mk.ukim.finki.emclab.service.application.impl;
 
 import mk.ukim.finki.emclab.model.domain.Country;
 import mk.ukim.finki.emclab.model.dto.CreateAuthorDto;
+import mk.ukim.finki.emclab.model.dto.DisplayAuthorDetailsDto;
 import mk.ukim.finki.emclab.model.dto.DisplayAuthorDto;
 import mk.ukim.finki.emclab.model.exception.CountryNotFoundException;
 import mk.ukim.finki.emclab.repository.CountryRepository;
@@ -60,5 +61,12 @@ public class AuthorApplicationServiceImpl implements AuthorApplicationService {
         return authorService
                 .deleteById(id)
                 .map(DisplayAuthorDto::from);
+    }
+
+    @Override
+    public Optional<DisplayAuthorDetailsDto> findWithDetailsById(Long id) {
+        return authorService
+                .findById(id)
+                .map(DisplayAuthorDetailsDto::from);
     }
 }

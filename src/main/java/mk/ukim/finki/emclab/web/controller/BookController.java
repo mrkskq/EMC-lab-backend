@@ -3,6 +3,7 @@ package mk.ukim.finki.emclab.web.controller;
 import jakarta.validation.Valid;
 import mk.ukim.finki.emclab.model.domain.Book;
 import mk.ukim.finki.emclab.model.dto.CreateBookDto;
+import mk.ukim.finki.emclab.model.dto.DisplayBookDetailsDto;
 import mk.ukim.finki.emclab.model.dto.DisplayBookDto;
 import mk.ukim.finki.emclab.model.dto.DisplayBookListDto;
 import mk.ukim.finki.emclab.model.enumeration.BookCategory;
@@ -36,6 +37,14 @@ public class BookController {
     public ResponseEntity<DisplayBookDto> findById(@PathVariable Long id){
         return bookApplicationService
                 .findById(id)
+                .map(ResponseEntity::ok)
+                .orElseGet(() -> ResponseEntity.notFound().build());
+    }
+
+    @GetMapping("/{id}/details")
+    public ResponseEntity<DisplayBookDetailsDto> findWithDetailsById(@PathVariable Long id) {
+        return bookApplicationService
+                .findWithDetailsById(id)
                 .map(ResponseEntity::ok)
                 .orElseGet(() -> ResponseEntity.notFound().build());
     }

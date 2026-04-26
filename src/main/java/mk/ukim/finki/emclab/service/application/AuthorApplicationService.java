@@ -2,6 +2,7 @@ package mk.ukim.finki.emclab.service.application;
 
 
 import mk.ukim.finki.emclab.model.dto.CreateAuthorDto;
+import mk.ukim.finki.emclab.model.dto.DisplayAuthorDetailsDto;
 import mk.ukim.finki.emclab.model.dto.DisplayAuthorDto;
 
 import java.util.List;
@@ -17,4 +18,6 @@ public interface AuthorApplicationService {
     Optional<DisplayAuthorDto> update(Long id, CreateAuthorDto createAuthorDto);
 
     Optional<DisplayAuthorDto> deleteById(Long id);
+
+    Optional<DisplayAuthorDetailsDto> findWithDetailsById(Long id);
 }

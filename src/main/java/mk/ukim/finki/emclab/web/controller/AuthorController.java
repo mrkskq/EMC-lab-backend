@@ -2,6 +2,7 @@ package mk.ukim.finki.emclab.web.controller;
 
 import jakarta.validation.Valid;
 import mk.ukim.finki.emclab.model.dto.CreateAuthorDto;
+import mk.ukim.finki.emclab.model.dto.DisplayAuthorDetailsDto;
 import mk.ukim.finki.emclab.model.dto.DisplayAuthorDto;
 import mk.ukim.finki.emclab.service.application.AuthorApplicationService;
 import org.springframework.http.ResponseEntity;
@@ -23,6 +24,14 @@ public class AuthorController {
     public ResponseEntity<DisplayAuthorDto> findById(@PathVariable Long id){
         return authorApplicationService
                 .findById(id)
+                .map(ResponseEntity::ok)
+                .orElseGet(() -> ResponseEntity.notFound().build());
+    }
+
+    @GetMapping("/{id}/details")
+    public ResponseEntity<DisplayAuthorDetailsDto> findWithDetailsById(@PathVariable Long id) {
+        return authorApplicationService
+                .findWithDetailsById(id)
                 .map(ResponseEntity::ok)
                 .orElseGet(() -> ResponseEntity.notFound().build());
     }

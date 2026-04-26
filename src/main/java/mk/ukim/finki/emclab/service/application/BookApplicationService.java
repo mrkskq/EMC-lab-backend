@@ -1,6 +1,7 @@
 package mk.ukim.finki.emclab.service.application;
 
 import mk.ukim.finki.emclab.model.dto.CreateBookDto;
+import mk.ukim.finki.emclab.model.dto.DisplayBookDetailsDto;
 import mk.ukim.finki.emclab.model.dto.DisplayBookDto;
 
 import java.util.List;
@@ -18,4 +19,6 @@ public interface BookApplicationService {
     Optional<DisplayBookDto> deleteById(Long id);
 
     Optional<DisplayBookDto> rent(Long id);
+
+    Optional<DisplayBookDetailsDto> findWithDetailsById(Long id);
 }
