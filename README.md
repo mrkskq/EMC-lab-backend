@@ -8,3 +8,11 @@
 - `docker compose up -d`
 
 За тестирање на api endpoints: `http://localhost:8080/swagger-ui/index.html`
+
+За Login:
+- ROLE_ADMINISTRATOR: (read, add, edit, delete)
+  - username: admin
+  - password: admin 
+- ROLE_USER: (read)
+  - username: user
+  - password: user
