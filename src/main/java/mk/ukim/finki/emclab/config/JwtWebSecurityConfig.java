@@ -92,8 +92,8 @@ public class JwtWebSecurityConfig {
                                         "/api/countries/{id}",
                                         "/api/countries/{id}/details"
                                 )
-//                                .hasRole("USER")
-                                .permitAll()
+                                .hasRole("USER")
+//                                .permitAll()
                                 .requestMatchers(
                                         "/api/authors/add",
                                         "/api/authors/{id}/edit",
@@ -105,6 +105,7 @@ public class JwtWebSecurityConfig {
                                         "/api/countries/{id}/edit",
                                         "/api/countries/{id}/delete"
                                 )
+//                                .permitAll()
                                 .hasRole("ADMINISTRATOR")
                                 .anyRequest()
                                 .hasRole("ADMINISTRATOR")

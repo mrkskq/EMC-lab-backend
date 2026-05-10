@@ -17,6 +17,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Arrays;
 import java.util.List;
 
 @RestController
@@ -143,4 +144,19 @@ public class BookController {
         return bookRepository.findAll();
     }
 
+    // lab4
+    @GetMapping("/states")
+    public List<String> getStates() {
+        return Arrays.stream(BookState.values())
+                .map(Enum::name)
+                .toList();
+    }
+
+    // lab4
+    @GetMapping("/categories")
+    public List<String> getCategories() {
+        return Arrays.stream(BookCategory.values())
+                .map(Enum::name)
+                .toList();
+    }
 }
